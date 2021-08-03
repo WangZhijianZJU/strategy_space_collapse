@@ -1,5 +1,5 @@
 # strategy_space_collapse
-博弈策略空间塌缩过程的理论与实验
+项目标题：博弈策略空间塌缩过程的理论与实验
 
 扩展摘要：http://gtcenter.org/Archive/2019/Conf/Wang3311.pdf 
 
