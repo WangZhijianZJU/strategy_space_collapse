@@ -1,0 +1,2 @@
+# strategy_space_collapse
+博弈策略空间塌缩过程的理论与实验
