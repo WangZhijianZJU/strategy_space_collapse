@@ -1,6 +1,8 @@
 # strategy_space_collapse
 博弈策略空间塌缩过程的理论与实验
 
+扩展摘要：http://gtcenter.org/Archive/2019/Conf/Wang3311.pdf 
+
 实验设计：王亦佳 
 
 实验地点：浙江大学实验社会科学实验室
