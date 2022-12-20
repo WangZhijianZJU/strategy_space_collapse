@@ -1,19 +1,21 @@
-
-function r = J_ApFig1220_Exp()
-close all
+% C:\Users\think\Desktop\tmp2\space-collapse-master\code\plot_Dyn_Exp_Eic20221220.m
+function r = plot_Dyn_Exp_Eic20221220()
+% close all
 clear 
 
  %% ----------------------------------------------------------------------------------------------------------------%%   
+ofilehead = 'dyn';
         load('J_dyn_202212.mat', 'eicyclelogit')
         eicycle_Dyn_Exp= eicyclelogit;
  %% ----------------------------------------------------------------------------------------------------------------%%  
-        load('eicycle.mat')
-        eicycle_Dyn_Exp= [Yret_12x3col_2(1:120,1:12); Yret_12x3col_2(1:120,[1:12]+12); Yret_12x3col_2(1:120,[1:12]+24)];  
+% % % % % % % % % % ofilehead = 'exp';
+% % % % % % % % % %         load('eicycle.mat')
+% % % % % % % % % %         eicycle_Dyn_Exp= [Yret_12x3col_2(1:120,1:12); Yret_12x3col_2(1:120,[1:12]+12); Yret_12x3col_2(1:120,[1:12]+24)];  
  %% ----------------------------------------------------------------------------------------------------------------%%        
         Trt_ses(:,:,1) = eicycle_Dyn_Exp(1:120,1:12); 
         Trt_ses(:,:,2) = eicycle_Dyn_Exp(1+120:120+120,1:12);
         Trt_ses(:,:,3) = eicycle_Dyn_Exp(1+240:120+240,1:12); 
-            for k=1:3; mas(k) = max(max(Trt_ses(:,:,k)));end 
+            for k=1:3; mas(k) = max(max(abs(Trt_ses(:,:,k))));end 
             x=max(mas)
             for k=1:3; Trt_ses(:,:,k) = Trt_ses(:,:,k)./x;end
             
@@ -21,7 +23,7 @@ clear
             cols =[ 0.00,0.45,0.74
                     0.47,0.67,0.19
                     1.00,0.41,0.16]
-                
+
 %%% logit dyn sess
 for k=1:3
     figure; 
@@ -30,29 +32,29 @@ for k=1:3
 %             set(gcf,'position',[2548,83,680,145])
 %                 if k<3; set(gca,'xtick','');end
 %             legend(leg(k))
-                set(gca,'looseInset',[0 0 0 0],'fontsize',12,'linewidth',2) ;box on;
+                set(gca,'looseInset',[0 0 0 0],'fontsize',12,'linewidth',2) ;box on;grid on;
                 set(gcf,'position',[200+k*10,200+k*20,680,195])
 %                 hl=legend(leg(k));set(hl,'box','off');
-            saveas(gcf,strcat('exp__ses_', num2str(k), '.png'))
+            saveas(gcf,strcat(ofilehead, '_eic_ses_', num2str(k), '.png'))
 end
 
 
   
-        Y(:,1) = sum(eicycle_Dyn_Exp(1:120,1:12)')'*1.000;
-        Y(:,2) = sum(eicycle_Dyn_Exp(1+120:120+120,1:12)')'*1.000;
-        Y(:,3) = sum(eicycle_Dyn_Exp(1+240:120+240,1:12)')'*1.000;    
-           mas(k) = max(max(Y)) 
-            x=max(mas)
+        Y(:,1) = sum(Trt_ses(:,:,1)')'*1.000;
+        Y(:,2) = sum(Trt_ses(:,:,2)')'*1.000;
+        Y(:,3) = sum(Trt_ses(:,:,3)')'*1.000;    
+           x = max(max(abs(Y))) 
+%             x=max(mas)
             for k=1:3; Y(:,k) = Y(:,k)./x;end        
 %    figure; title('Eicycle spectrum in logit dynamics system');hold on
         for k=1:3
         figure; 
             plot(Y(:,k),'linewidth',2,'Color',cols(k,:));ylim([-1 1]*1.2)
-                set(gca,'looseInset',[0 0 0 0],'fontsize',12,'linewidth',2) ;box on;
+                set(gca,'looseInset',[0 0 0 0],'fontsize',12,'linewidth',2) ;box on;grid on;
                 set(gcf,'position',[200+k*10,200+k*20,680,195])
                 hl=legend(leg(k));set(hl,'box','off');
 %                 if k<3; set(gca,'xtick','');else;set(gca,'xtick',[20:20:119]); end
-                saveas(gcf,strcat('exp__trt_', num2str(k), '.png'))
+                saveas(gcf,strcat(ofilehead, '_eic_trt_', num2str(k), '.png'))
         end
 end
 
