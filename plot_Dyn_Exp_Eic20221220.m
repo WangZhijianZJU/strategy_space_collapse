@@ -1,16 +1,23 @@
+
+% ofilehead = 'dyn'; plot_Dyn_Exp_Eic20221220(ofilehead)
+% ofilehead = 'exp'; plot_Dyn_Exp_Eic20221220(ofilehead)
+
 % C:\Users\think\Desktop\tmp2\space-collapse-master\code\plot_Dyn_Exp_Eic20221220.m
-function r = plot_Dyn_Exp_Eic20221220()
+function r = plot_Dyn_Exp_Eic20221220(ofilehead)
 % close all
-clear 
+% clear 
 
  %% ----------------------------------------------------------------------------------------------------------------%%   
-ofilehead = 'dyn';
+if ofilehead == 'dyn'
         load('J_dyn_202212.mat', 'eicyclelogit')
         eicycle_Dyn_Exp= eicyclelogit;
  %% ----------------------------------------------------------------------------------------------------------------%%  
-% % % % % % % % % % ofilehead = 'exp';
-% % % % % % % % % %         load('eicycle.mat')
-% % % % % % % % % %         eicycle_Dyn_Exp= [Yret_12x3col_2(1:120,1:12); Yret_12x3col_2(1:120,[1:12]+12); Yret_12x3col_2(1:120,[1:12]+24)];  
+else if ofilehead == 'exp'
+        load('eicycle.mat')
+        eicycle_Dyn_Exp= [Yret_12x3col_2(1:120,1:12); Yret_12x3col_2(1:120,[1:12]+12); Yret_12x3col_2(1:120,[1:12]+24)];  
+
+    end 
+end
  %% ----------------------------------------------------------------------------------------------------------------%%        
         Trt_ses(:,:,1) = eicycle_Dyn_Exp(1:120,1:12); 
         Trt_ses(:,:,2) = eicycle_Dyn_Exp(1+120:120+120,1:12);
