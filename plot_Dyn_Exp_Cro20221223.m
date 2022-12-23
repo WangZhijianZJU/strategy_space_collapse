@@ -1,5 +1,8 @@
-ofilehead == needed  
+% 20221224   
+% ofilehead == 'Exp'
+% ofilehead == 'Dyn'
 
+%% ----------------------------------------------------------------------------------------------------------------%%
 if ofilehead == 'Exp'     
     load('eicycle.mat')  % experimental result   
     Acc_3page=[];
@@ -22,11 +25,12 @@ if ofilehead == 'Exp'
     load('J_dyn_202212.mat','R36000x35Logit', 'eicyclelogit','Acc_3page_logit')            
             Acc_3page = Acc_3page_logit;
      end
- end   
+ end  
+ %% ----------------------------------------------------------------------------------------------------------------%% 
 
-AX = Acc_3page_logit(:,1:8,1);AY = Acc_3page_logit(:,9:16,1);  %2,6;  2,4
-BX = Acc_3page_logit(:,1:8,2);BY = Acc_3page_logit(:,9:16,2);  %1; 4
-CX = Acc_3page_logit(:,1:8,3);CY = Acc_3page_logit(:,9:16,3);  %1,2,5; 2,4
+AX = Acc_3page_logit(:,1:8,1);AY = Acc_3page_logit(:,9:16,1);  % X = 2,6;  Y = 2,4
+BX = Acc_3page_logit(:,1:8,2);BY = Acc_3page_logit(:,9:16,2);  % X = 1; Y = 4
+CX = Acc_3page_logit(:,1:8,3);CY = Acc_3page_logit(:,9:16,3);  % X = 1,2,5; Y = 2,4
 
 figure;Ax_2 = AX - AX(:,2);plot(Ax_2, 'linewidth',2); legend on;xlim([0 300]); ylim([-1000 500]); title('AX_2'); 
 figure;Ax_6 = AX - AX(:,6);plot(Ax_6, 'linewidth',2); legend on;xlim([0 300]); ylim([-1000 500]);title('AX_6');
